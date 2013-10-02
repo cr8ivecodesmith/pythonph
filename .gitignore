@@ -1,0 +1,13 @@
+# Executables. You should create these yourself.
+bin/*
+
+# Python byte code
+*.py[co]
+
+# Log files
+*.log
+
+# Archive files
+*.gz
+*.zip
+*.tar

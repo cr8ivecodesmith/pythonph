@@ -1,0 +1,8 @@
+# Base packages
+Django==1.5.4
+South==0.8.2
+Unipath==1.0
+psycopg2==2.5.1
+gunicorn==18.0
+requests==2.0.0
+setproctitle==1.1.7

@@ -1,0 +1,120 @@
+Create a headless development server VM
+---------------------------------------
+
+It is recommended to have an independent sandbox development server for any of your projects.
+
+
+Install dependencies
+--------------------
+
+    sudo apt-get install libpq-dev python-dev
+
+
+Install and configure Postgre SQL
+---------------------------------
+
+- Install Postgre SQL 9.3
+    Follow instructions on http://www.postgresql.org/download/linux/ubuntu/
+
+- Edit pg_hba.conf
+
+    sudo vim /etc/postgresql/9.3/main/pg_hba.conf
+
+    Set the ff. lines to look like to these:
+
+    # Database administrative login by Unix domain socket
+    local   all             postgres                                trust
+
+    # TYPE  DATABASE        USER            ADDRESS                 METHOD
+
+    # "local" is for Unix domain socket connections only
+    local   all             all                                     trust
+    # IPv4 local connections:
+    host    all             all             127.0.0.1/32            md5
+    # IPv6 local connections:
+    host    all             all             ::1/128                 md5
+
+- Create database and user
+
+    sudo su - postgres
+    createdb pythonph
+    createuser -P --interactive
+        role: pythonph_user
+        password: pythonph@1234
+        is superuser: n
+        create db: n
+        create role: n
+    psql
+    GRANT ALL PRIVILEGES ON DATABASE pythonph TO pythonph_user;
+    \q
+    logout
+
+
+Setup required environmental variables
+--------------------------------------
+
+DJANGO_SETTINGS_MODULE
+    i.e.:
+    export DJANGO_SETTINGS_MODULE=pythonph.settings.local
+
+PYTHONPATH
+    The alternative to this is to always specify your project path when running
+    django-admin.py or gunicorn_django.
+
+    Otherwise, this would be set to '/path/to/repo/pythonph/pythonph'
+
+PYTHONPH_SERVER
+    Your server IP or DNS. This is required for the start_server script.
+    i.e. '192.168.56.100:8000' or 'python.ph'
+
+PYTHONPH_DATABASE
+    The database you created.
+
+PYTHONPH_DATABASE_USER
+    The database user.
+
+PYTHONPH_DATABASE_PASSWORD
+    The database user password.
+
+PYTHONPH_SECRETKEY
+    Any long string with a good mix of alphanumeric and special characters.
+    i.e. 'bg^08-zh$^3)s54r&-vcpvf(+26ym9r!e7wih-5kczc%_1(c@&'
+
+PYTHONPH_EMAIL_HOST
+    Should usually default to 'smtp.gmail.com'.
+
+PYTHONPH_EMAIL_HOST_USER
+    Your full email
+    i.e. 'cr8ivecodesmith@gmail.com'
+
+PYTHONPH_EMAIL_HOST_PASSWORD
+    Your email password. Nuff said.
+
+PYTHONPH_EMAIL_HOST_PORT
+    If using gmail as email service, this should be: 587
+
+
+Setup pythonph repo for development
+-----------------------------------
+
+- Clone the repo
+
+    git clone git@github.com:cr8ivecodesmith/pythonph.git
+
+- Create a virtual enviroment. (Assuming you have virtualenvwrapper as well)
+
+    mkvirtualenv -a /path/to/repo/pythonph --no-site-packages pythonph
+
+- Install local requirements
+
+    pip install -r requirements/local.txt
+
+- Initialize the database
+
+    django-admin.py syncdb
+    django-admin.py migrate
+
+- Run server
+
+    django-admin.py runserver $PYTHONPH_SERVER
+

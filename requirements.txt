@@ -1,0 +1,2 @@
+# Some Platform As A Service looks for a requirements.txt file.
+-r requirements/production.txt
