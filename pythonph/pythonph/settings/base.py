@@ -269,7 +269,7 @@ LOGGING = {
         }
     },
     'formatters': {
-    # See: http://docs.python.org/2/library/logging.html#logrecord-attributes
+        # See: http://docs.python.org/2/library/logging.html#logrecord-attributes
         'default': {
             'format': '%(asctime)s [%(process)d] [%(levelname)s] - %(messages)s'
         }
