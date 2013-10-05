@@ -95,6 +95,11 @@ TIME_ZONE = 'Asia/Manila'
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#language-code
 LANGUAGE_CODE = 'en-us'
 
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#languages
+LANGUAGES = [
+    ('en', 'English'),
+]
+
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#site-id
 SITE_ID = 1
 
@@ -185,6 +190,9 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
+    # Django CMS
+    'cms.context_processors.media',
+    'sekizai.context_processors.sekizai',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-dirs
@@ -193,12 +201,18 @@ TEMPLATE_DIRS = (
     # Example: SITE_ROOT.child('example_dir'),
     SITE_ROOT.child('templates'),
 )
+
+# See: http://docs.django-cms.org/en/2.4.2/getting_started/configuration.html#std:setting-CMS_TEMPLATES
+CMS_TEMPLATES = (
+    ('template_1.html', 'Template One'),
+    ('template_2.html', 'Template Two'),
+)
 ###### END TEMPLATE CONFIGURATION
 
 
 ###### MIDDLEWARE CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#middleware-classes
-MIDDLEWARE_CLASSES = (
+DJANGO_MIDDLEWARE = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -206,6 +220,20 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
+
+THIRD_PARTY_MIDDLEWARE = (
+    # Django CMS
+    'cms.middleware.page.CurrentPageMiddleware',
+    'cms.middleware.user.CurrentUserMiddleware',
+    'cms.middleware.toolbar.ToolbarMiddleware',
+    'cms.middleware.language.LanguageCookieMiddleware',
+)
+
+LOCAL_MIDDLEWARE = (
+)
+
+MIDDLEWARE_CLASSES = DJANGO_MIDDLEWARE + THIRD_PARTY_MIDDLEWARE + LOCAL_MIDDLEWARE
+
 ###### END MIDDLEWARE CONFIGURATION
 
 
@@ -235,6 +263,20 @@ DJANGO_APPS = (
 THIRD_PARTY_APPS = (
     # Database migration helpers
     'south',
+    # Django CMS
+    'cms',
+    'mptt',
+    'sekizai',
+    # Django CMS Plugins
+    'cms.plugins.file',
+    'cms.plugins.flash',
+    'cms.plugins.googlemap',
+    'cms.plugins.link',
+    'cms.plugins.picture',
+    'cms.plugins.teaser',
+    'cms.plugins.text',
+    'cms.plugins.video',
+    'cms.plugins.twitter',
 )
 
 # Project-specific apps
