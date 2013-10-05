@@ -184,15 +184,15 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.tz',
     'django.contrib.messages.context_processors.messages',
     'django.core.context_processors.request',
+    # Django CMS
+    'cms.context_processors.media',
+    'sekizai.context_processors.sekizai',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-loaders
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-    # Django CMS
-    'cms.context_processors.media',
-    'sekizai.context_processors.sekizai',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-dirs
