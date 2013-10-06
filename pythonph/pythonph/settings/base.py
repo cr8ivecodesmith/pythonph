@@ -265,6 +265,7 @@ THIRD_PARTY_APPS = (
     'south',
     # Django CMS
     'cms',
+    'menus',
     'mptt',
     'sekizai',
     # Django CMS Plugins
