@@ -278,6 +278,8 @@ THIRD_PARTY_APPS = (
     'cms.plugins.text',
     'cms.plugins.video',
     'cms.plugins.twitter',
+    # Django Registration
+    'registration',
 )
 
 # Project-specific apps
@@ -292,6 +294,11 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 ###### DJANGO-CMS CONFIGURATION
 CMS_PERMISSION = True
 ###### END DJANGO-CMS CONFIGURATION
+
+
+###### DJANGO-REGISTRATION CONFIGURATION
+ACCOUNT_ACTIVATION_DAYS = 3
+###### END DJANGO-REGISTRATION CONFIGURATION
 
 
 ###### LOGGING CONFIGURATION

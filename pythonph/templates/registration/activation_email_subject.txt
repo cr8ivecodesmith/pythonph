@@ -1,0 +1,1 @@
+[{{ site }}] Confirm user registration

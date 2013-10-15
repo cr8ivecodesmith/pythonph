@@ -7,6 +7,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^users/', include('registration.backends.default.urls')),
     url(r'^', include('cms.urls')),
 )
 

@@ -1,0 +1,1 @@
+Please confirm registration within {{ expiration_days }} days. Open the link: <a href="http://{{ site }}/users/activate/{{ activation_key }}">{{ activation_key }}</a>.
