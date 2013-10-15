@@ -289,6 +289,11 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 ###### END APP CONFIGURATION
 
 
+###### DJANGO-CMS CONFIGURATION
+CMS_PERMISSION = True
+###### END DJANGO-CMS CONFIGURATION
+
+
 ###### LOGGING CONFIGURATION
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
